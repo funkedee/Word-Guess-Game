@@ -27,10 +27,18 @@ var wordGuessGame = {
         var currentWordDiv= document.getElementById("current-word");
         currentWordDiv.textContent= this.blankWord;
     },
-
-
-    
+    restart: function (){
+        this.guessesLeft= 10;
+        this.lettersGuessed= "";
+        this.blankWord= "";
+        var lettersGuessedDiv = document.getElementById("letters-guessed");
+        lettersGuessedDiv.textContent= this.lettersGuessed;
+        var guessesLeftDiv = document.getElementById("guesses-left");
+        guessesLeftDiv.textContent = this.guessesLeft;
+        this.startGame();
+    },
 };
+
 // start game
 document.onkeyup = function (event) {
     if(wordGuessGame.currentWord===""){
@@ -57,7 +65,7 @@ document.onkeyup = function (event) {
                 currentWordDiv.textContent= wordGuessGame.blankWord;
         }
         // incorrect letter
-        if (indexes.length === 0 && wordGuessGame.lettersGuessed.search(letter)===-1) {
+        if (indexes.length === 0 && wordGuessGame.lettersGuessed.search(letter)===-1 && wordGuessGame.alphabet.search(letter)>=0) {
             wordGuessGame.lettersGuessed= wordGuessGame.lettersGuessed + letter +", ";
             var lettersGuessedDiv = document.getElementById("letters-guessed");
             lettersGuessedDiv.textContent= wordGuessGame.lettersGuessed.toUpperCase();
@@ -71,22 +79,12 @@ document.onkeyup = function (event) {
             var winsDiv = document.getElementById("wins");
             winsDiv.textContent= wordGuessGame.wins;
             alert("You Win!");
-            wordGuessGame.blankWord= "";
-            wordGuessGame.lettersGuessed= "";
-            wordGuessGame.guessesLeft= 10;
-            wordGuessGame.startGame();
+            wordGuessGame.restart();
         }
         // lose game and restart
         if (wordGuessGame.guessesLeft === 0){
-            alert("You lose");
-            wordGuessGame.guessesLeft= 10;
-            wordGuessGame.lettersGuessed= "";
-            wordGuessGame.blankWord= "";
-            var lettersGuessedDiv = document.getElementById("letters-guessed");
-            lettersGuessedDiv.textContent= wordGuessGame.lettersGuessed;
-            var guessesLeftDiv = document.getElementById("guesses-left");
-            guessesLeftDiv.textContent = wordGuessGame.guessesLeft;
-            wordGuessGame.startGame();
+            alert("You lose. The word was " + wordGuessGame.currentWord);
+            wordGuessGame.restart();
         }
     }
  };
