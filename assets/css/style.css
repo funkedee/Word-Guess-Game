@@ -1,0 +1,7 @@
+header {
+    widows: 100%;
+    background-image: url(../images/rick_and_morty_logo);
+}
+#current-word {
+    letter-spacing: 2px;
+}

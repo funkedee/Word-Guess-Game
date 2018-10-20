@@ -1,5 +1,7 @@
+
 var wordGuessGame = {
-    words: ["portal", "schwifty", "dimension", "scientist", "spaceship", "meeseeks"],
+    alphabet: "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r,  s, t, u, v, w, x, y, z",
+    words: ["portal", "schwifty", "interdimensional", "scientist", "spaceship", "Meeseeks", "galactic", "universe", "planet", "federation", "mathematical", "Needful", "Birdperson","reality", "pickle","Summer", "Squanchy", "Cronenberg", "Eyeholes", "Vindicators"],
     currentWord: "",
     blankWord: "",
     wins: 0,
@@ -11,34 +13,80 @@ var wordGuessGame = {
     },
     underlines: function(){
         for (i=0; i<this.currentWord.length; i++) {
-            this.blankWord = this.blankWord + "_ ";
+            this.blankWord = this.blankWord + "_";
         };
-        console.log(this.blankWord);
     },
+    startGame: function(){
+        this.randomWord();
+        this.underlines();
+        var currentWordDiv= document.getElementById("current-word");
+        currentWordDiv.textContent= wordGuessGame.blankWord;
+    },
+    correctLetter: function (){
+        this.blankWord= this.blankWord.substr(0,index)+ letter + this.blankWord.substr(index+1);
+        var currentWordDiv= document.getElementById("current-word");
+        currentWordDiv.textContent= this.blankWord;
+    },
+
+
+    
 };
 
 document.onkeyup = function (event) {
     if(wordGuessGame.currentWord===""){
-        wordGuessGame.randomWord();
-        wordGuessGame.underlines();
-        var currentWordDiv= document.getElementById("current-word");
-        currentWordDiv.textContent= wordGuessGame.blankWord;
+        wordGuessGame.startGame();
     }
     else {
         var letter = event.key.toLowerCase();
-        var index = wordGuessGame.currentWord.search(letter);
-        if (index >= 0 ) {
-
+        var indexes =[];
+        if (wordGuessGame.alphabet.search(letter) >= 0) {
+            for(i=0; i<wordGuessGame.currentWord.length; i++) {
+               if(wordGuessGame.currentWord.toLowerCase().charAt(i)===letter) {
+                indexes.push(i);
+               }
+            }
         }
-        if (index===-1) {
-            wordGuessGame.lettersGuessed = wordGuessGame.lettersGuessed + letter + ", ";
+        
+        if (indexes !== [] ) {
+            for(i=0; i<indexes.length; i++) {
+                var index= indexes[i];
+                wordGuessGame.blankWord= wordGuessGame.blankWord.substr(0,index)+ wordGuessGame.currentWord[index] + wordGuessGame.blankWord.substr(index+1);
+            }
+            var currentWordDiv= document.getElementById("current-word");
+                currentWordDiv.textContent= wordGuessGame.blankWord;
+        }
+
+        if (indexes.length=== 0 && wordGuessGame.lettersGuessed.search(letter)===-1) {
+            wordGuessGame.lettersGuessed= wordGuessGame.lettersGuessed + letter +", ";
             var lettersGuessedDiv = document.getElementById("letters-guessed");
             lettersGuessedDiv.textContent= wordGuessGame.lettersGuessed;
             wordGuessGame.guessesLeft--;
             var guessesLeftDiv = document.getElementById("guesses-left");
             guessesLeftDiv.textContent = wordGuessGame.guessesLeft;
+        }
+        
+        if (wordGuessGame.blankWord===wordGuessGame.currentWord){
+            wordGuessGame.wins++;
+            var winsDiv = document.getElementById("wins");
+            winsDiv.textContent= wordGuessGame.wins;
+            alert("You Win!");
+            wordGuessGame.blankWord= "";
+            wordGuessGame.lettersGuessed= "";
+            wordGuessGame.guessesLeft= 10;
+            wordGuessGame.startGame();
+        }
+
+        if (wordGuessGame.guessesLeft===0){
+            alert("You lose");
+            wordGuessGame.guessesLeft= 10;
+            wordGuessGame.lettersGuessed= "";
+            wordGuessGame.blankWord= "";
+            var lettersGuessedDiv = document.getElementById("letters-guessed");
+            lettersGuessedDiv.textContent= wordGuessGame.lettersGuessed;
+            var guessesLeftDiv = document.getElementById("guesses-left");
+            guessesLeftDiv.textContent = wordGuessGame.guessesLeft;
+            wordGuessGame.startGame();
 
         }
-    };
-};
-console.log(wordGuessGame.lettersGuessed)
+    }
+ };
