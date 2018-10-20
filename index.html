@@ -4,35 +4,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Rick &  Morty Hangman</title>
+    <link href="https://fonts.googleapis.com/css?family=Schoolbell" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/images/rick-and-morty-icon-circle-png-3.png">
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
+    
     <header>
-        <h1>Hangman</h1>
+        <h1>HANGMAN</h1>
+        
+        <audio controls loop><source src= "assets/audio/rick_and_morty_theme_song.mp3" type= "audio/mpeg"> </audio>
+
     </header>
-    <main>
-        <div class="current_word">
-            <span id="current-word"><h2>Press any key to start</h2></span>
-        </div>
-
-        <div class="letters_guessed">
-            <h2>Letters already guessed:</h2>
-            <br>
-            <h3><span id="letters-guessed"></span></h3>
-        </div>
-
-        <div class="tallies">
-            <h2>Guesses left:</h2>
-            <br>
-            <h3><span id="guesses-left">10</span></h3>
-            <br> <br>
-            <h2> Wins:</h2>
-            <br>
-            <h3><span id="wins">0</span></h3>
-        </div>
-    </main>
+    <div class="container">
+        <main>
+            <div class="current_word">
+                <span id="current-word">
+                    <h2>PRESS ANY KEY TO START</h2>
+                </span>
+            </div>
+        </main>
+            <div class="letters_guessed">
+                <h2>LETTERS ALREADY GUESSED: <hr></h2>
+                <br>
+                <h3><span id="letters-guessed"></span></h3>
+            </div>
+    
+            <div class="tallies">
+                <h2>GUESSES LEFT:<hr class= "scoreboard"></h2>
+                <h3><span id="guesses-left">10</span></h3>
+                <br><br>
+                <h2> WINS:<hr class="scoreboard"></h2>
+                <h3><span id="wins">0</span></h3>
+            </div>
+        
+    </div>
 
 
    <script src="assets/javascript/game.js"></script> 
