@@ -9,7 +9,6 @@ var wordGuessGame = {
     guessesLeft: 10,
     randomWord: function(){
         this.currentWord= this.words[Math.floor(Math.random()*this.words.length)];
-        console.log(this.currentWord);
     },
     underlines: function(){
         for (i=0; i<this.currentWord.length; i++) {
