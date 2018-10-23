@@ -91,9 +91,6 @@ main {
     .letters_guessed {
         left: 25px
     }
-}
-
-@media screen and (max-width: 1300px) {
     .tallies {
         right: 25px;
     }
@@ -104,9 +101,6 @@ main {
         left: 5px;
         width: 200px;
     }
-}
-
-@media screen and (max-width: 1150px) {
     .tallies {
         right: 5px;
         width: 200px;
@@ -118,23 +112,20 @@ main {
         left: 0px;
         width: 175px;
     }
-}
 
-@media screen and (max-width: 1000px) {
     .tallies {
         right: 0px;
         width: 175px;
     }
 }
 
+
 @media screen and (max-width: 950px) {
     .letters_guessed {
         left: 0px;
         width: 175px;
     }
-}
 
-@media screen and (max-width: 950px) {
     .tallies {
         right: 0px;
         width: 175px
