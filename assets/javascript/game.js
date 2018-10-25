@@ -77,8 +77,11 @@ document.onkeyup = function (event) {
             wordGuessGame.wins++;
             var winsDiv = document.getElementById("wins");
             winsDiv.textContent= wordGuessGame.wins;
-            alert("You Win!");
-            wordGuessGame.restart();
+            setTimeout(function(){
+                alert("You Win!");
+                 wordGuessGame.restart();
+            }, 1);
+            
         }
         // lose game and restart
         if (wordGuessGame.guessesLeft === 0){
