@@ -81,7 +81,6 @@ document.onkeyup = function (event) {
                 alert("You Win!");
                  wordGuessGame.restart();
             }, 1);
-            
         }
         // lose game and restart
         if (wordGuessGame.guessesLeft === 0){
