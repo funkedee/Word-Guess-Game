@@ -11,7 +11,7 @@ Then press any key to start the game.  A series of _ will be displayed, each rep
 
 * **Daniel Lois** - *Initial work* - [funkedee](https://github.comfunkedee)
 
-Any quest0ins about the project can be emailed to daniellois92@gmail.com
+Any questions about the project can be emailed to daniellois92@gmail.com
 
 ## Acknowledgements
 
